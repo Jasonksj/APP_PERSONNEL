@@ -190,6 +190,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\FonctionControllers.cs" />
+    <Compile Include="DAO\FonctionDAO.cs" />
     <Compile Include="Entities\Absence.cs">
       <DependentUpon>GestPersonnel.tt</DependentUpon>
     </Compile>
@@ -231,6 +233,7 @@
     <Compile Include="Entities\Utilisateur.cs">
       <DependentUpon>GestPersonnel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\FonctionServices.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -302,11 +305,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="DAO\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
