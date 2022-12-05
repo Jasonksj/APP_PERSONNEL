@@ -191,7 +191,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controllers\FonctionControllers.cs" />
+    <Compile Include="DAO\ContratDAO.cs" />
     <Compile Include="DAO\FonctionDAO.cs" />
+    <Compile Include="DAO\MissionDAO.cs" />
     <Compile Include="Entities\Absence.cs">
       <DependentUpon>GestPersonnel.tt</DependentUpon>
     </Compile>

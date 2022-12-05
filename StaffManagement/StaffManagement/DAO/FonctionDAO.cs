@@ -13,28 +13,28 @@ namespace StaffManagement.DAO
     {
         GestPersonnelEntities staffManag;
 
-        Fonction mainFonction;
+        Fonction fonction;
 
         public FonctionDAO()
         {
             staffManag = new GestPersonnelEntities();
-            mainFonction = new Fonction();
+            fonction = new Fonction();
         }
 
         public Fonction Save(Fonction fonction)
         {
             try
             {
-                mainFonction = fonction;
-                staffManag.Fonctions.Add(mainFonction);
+                this.fonction = fonction;
+                staffManag.Fonctions.Add(this.fonction);
                 staffManag.SaveChanges();
-                return mainFonction;
+                return this.fonction;
             }
             catch(Exception ex)
             {
                 MessageBox.Show
                     (
-                        $"Enregistrement de la fonction '{fonction.Nom}' impossible !\nErreur : {ex.Message}",
+                        $"Enregistrement de la fonction '{this.fonction.Nom}' impossible !\nErreur : {ex.Message}",
                         "Echec",
                         MessageBoxButton.OK,
                         MessageBoxImage.Error
@@ -47,13 +47,13 @@ namespace StaffManagement.DAO
         {
             try
             {
-                mainFonction = staffManag.Fonctions.FirstOrDefault
+                this.fonction = staffManag.Fonctions.FirstOrDefault
                 (
                     fonction => (fonction.IdFonction == idFonction)
                 );
-                staffManag.Fonctions.Remove(mainFonction);
+                staffManag.Fonctions.Remove(this.fonction);
                 staffManag.SaveChanges();
-                return mainFonction.IdFonction;
+                return this.fonction.IdFonction;
             }
             catch (Exception ex)
             {
@@ -72,7 +72,7 @@ namespace StaffManagement.DAO
         {
             try
             {
-                return staffManag.Fonctions.FirstOrDefault
+                return staffManag.Fonctions.SingleOrDefault
                 (
                     fonction => fonction.IdFonction == idFonction
                 ) != null;
@@ -102,7 +102,11 @@ namespace StaffManagement.DAO
                 List<Fonction> fonctionList = FindAll();
                 return fonctionList.Where
                     (
-                        fonction => fonction.Nom.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) != -1
+                        fonction => fonction.Nom.IndexOf
+                        (
+                            name, 
+                            StringComparison.CurrentCultureIgnoreCase
+                        ) != -1
                     ).ToList();
             }
             catch (Exception ex)
@@ -115,9 +119,9 @@ namespace StaffManagement.DAO
         {
             try
             {
-                mainFonction = fonction;
+                this.fonction = fonction;
                 staffManag.SaveChanges();
-                return mainFonction;
+                return this.fonction;
             }
             catch (Exception ex)
             {
