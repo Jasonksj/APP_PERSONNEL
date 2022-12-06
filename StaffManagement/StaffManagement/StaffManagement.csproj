@@ -192,6 +192,7 @@
     </ApplicationDefinition>
     <Compile Include="Controllers\FonctionControllers.cs" />
     <Compile Include="DAO\ContratDAO.cs" />
+    <Compile Include="DAO\EmployeeDAO.cs" />
     <Compile Include="DAO\FonctionDAO.cs" />
     <Compile Include="DAO\MissionDAO.cs" />
     <Compile Include="DAO\UtilisateurDAO.cs" />
@@ -236,6 +237,7 @@
     <Compile Include="Entities\Utilisateur.cs">
       <DependentUpon>GestPersonnel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\FonctionServices.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

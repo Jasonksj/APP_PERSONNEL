@@ -4,28 +4,16 @@
 winexe
 C#
 .cs
-<<<<<<< HEAD
 C:\Users\Jason Kamsu\Documents\Projet\C#\APP_PERSONNEL\StaffManagement\StaffManagement\obj\Debug\
-=======
-C:\Users\LENOVO\Documents\GitHub\APP_PERSONNEL\StaffManagement\StaffManagement\obj\Debug\
->>>>>>> fb301a63b533f3384f1fb288111031b099ad89e7
 StaffManagement
 none
 false
 DEBUG;TRACE
-<<<<<<< HEAD
 C:\Users\Jason Kamsu\Documents\Projet\C#\APP_PERSONNEL\StaffManagement\StaffManagement\App.xaml
 1-587587561
 2-278316517
-27699420123
+292087518566
 62-1075021757
-=======
-C:\Users\LENOVO\Documents\GitHub\APP_PERSONNEL\StaffManagement\StaffManagement\App.xaml
-1-587587561
-2-278316517
-27-13823591
-621010997419
->>>>>>> fb301a63b533f3384f1fb288111031b099ad89e7
 Views\MainWindow.xaml;
 
 False
