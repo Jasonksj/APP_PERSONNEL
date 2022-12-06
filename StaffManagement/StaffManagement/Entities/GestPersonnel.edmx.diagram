@@ -5,36 +5,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5c0c12587cf34cfc9325c1639d8a7ef4" Name="Diagram1" ZoomLevel="94">
-        <EntityTypeShape EntityType="GestPersonnelModel.Absence" Width="1.5" PointX="9.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestPersonnelModel.Conge" Width="1.5" PointX="12.625" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestPersonnelModel.Contrat" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestPersonnelModel.Departement" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestPersonnelModel.Employee" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestPersonnelModel.Fonction" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestPersonnelModel.Mission" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestPersonnelModel.Paiement" Width="1.5" PointX="9.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestPersonnelModel.sysdiagram" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestPersonnelModel.Utilisateur" Width="1.5" PointX="0.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestPersonnelModel.Absence" Width="1.5" PointX="14.375" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestPersonnelModel.Conge" Width="1.5" PointX="14.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestPersonnelModel.Contrat" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestPersonnelModel.Departement" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestPersonnelModel.Employee" Width="1.5" PointX="3.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestPersonnelModel.Fonction" Width="1.5" PointX="3.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestPersonnelModel.Mission" Width="1.5" PointX="7.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestPersonnelModel.Paiement" Width="1.5" PointX="10.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestPersonnelModel.sysdiagram" Width="1.5" PointX="1.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestPersonnelModel.Utilisateur" Width="1.5" PointX="0.5" PointY="3.625" IsExpanded="true" />
         <AssociationConnector Association="GestPersonnelModel.FK__Paiement__IdAbse__4BAC3F29" ManuallyRouted="false" />
         <AssociationConnector Association="GestPersonnelModel.FK__Paiement__IdCong__4CA06362" ManuallyRouted="false" />
         <AssociationConnector Association="GestPersonnelModel.FK__Contrat__IdEmplo__5070F446" ManuallyRouted="false" />
         <AssociationConnector Association="GestPersonnelModel.FK__Contrat__IdFonct__49C3F6B7" ManuallyRouted="false" />
         <AssociationConnector Association="GestPersonnelModel.FK__Mission__4F7CD00D" ManuallyRouted="false" />
-        <AssociationConnector Association="GestPersonnelModel.FK__Paiement__4AB81AF0" ManuallyRouted="true" >
-          <ConnectorPoint PointX="6.75" PointY="4.8534961682558055" />
-          <ConnectorPoint PointX="6.75" PointY="4.9785566397104413" />
-          <ConnectorPoint PointX="7.125" PointY="5.2324672938759127" />
-          <ConnectorPoint PointX="7.125" PointY="5.0569466791550317" />
-          <ConnectorPoint PointX="9.375" PointY="5.0569466791550317" />
-          <ConnectorPoint PointX="9.75" PointY="4.6819466791550317" />
+        <AssociationConnector Association="GestPersonnelModel.FK__Paiement__4AB81AF0" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="GestPersonnelModel.FK__Departeme__IdMan__5165187F" ManuallyRouted="false" />
         <AssociationConnector Association="GestPersonnelModel.FK__Employees__IdDep__44FF419A" ManuallyRouted="false" />
-        <AssociationConnector Association="GestPersonnelModel.FK__Employees__IdMan__45F365D3" ManuallyRouted="true" >
-          <ConnectorPoint PointX="3.1085802242909431" PointY="5.2358204019069667" />
-          <ConnectorPoint PointX="3.1085802242909431" PointY="5.769153482727706" />
-          <ConnectorPoint PointX="4.464592482442951" PointY="5.769153482727706" />
-          <ConnectorPoint PointX="4.464592482442951" PointY="5.2358204019069667" />
+        <AssociationConnector Association="GestPersonnelModel.FK__Employees__IdMan__45F365D3" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="GestPersonnelModel.FK__Mission__IdManag__4E88ABD4" ManuallyRouted="false" />
         <AssociationConnector Association="GestPersonnelModel.FK__Paiement__IdMiss__4D94879B" ManuallyRouted="false" />
