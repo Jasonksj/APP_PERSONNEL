@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GestPersonnelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Absence">
+    <Key>
+      <PropertyRef Name="IdAbsence" />
+    </Key>
+    <Property Name="IdAbsence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Motif" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Paiements" Relationship="Self.FK__Paiement__IdAbse__4BAC3F29" FromRole="Absence" ToRole="Paiement" />
+  </EntityType>
+  <EntityType Name="Conge">
+    <Key>
+      <PropertyRef Name="IdConges" />
+    </Key>
+    <Property Name="IdConges" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateDebut" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateFin" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Justification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Paiements" Relationship="Self.FK__Paiement__IdCong__4CA06362" FromRole="Conges" ToRole="Paiement" />
+  </EntityType>
+  <EntityType Name="Contrat">
+    <Key>
+      <PropertyRef Name="IdEmployee" />
+      <PropertyRef Name="DateDebutContrat" />
+    </Key>
+    <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+    <Property Name="DateDebutContrat" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Titre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NiveauHierachique" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Salaire" Type="Single" Nullable="false" />
+    <Property Name="DateFin" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IdFonction" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Contrat__IdEmplo__5070F446" FromRole="Contrat" ToRole="Employees" />
+    <NavigationProperty Name="Fonction" Relationship="Self.FK__Contrat__IdFonct__49C3F6B7" FromRole="Contrat" ToRole="Fonction" />
+    <NavigationProperty Name="Missions" Relationship="Self.FK__Mission__4F7CD00D" FromRole="Contrat" ToRole="Mission" />
+    <NavigationProperty Name="Paiements" Relationship="Self.FK__Paiement__4AB81AF0" FromRole="Contrat" ToRole="Paiement" />
+  </EntityType>
+  <EntityType Name="Departement">
+    <Key>
+      <PropertyRef Name="IdDept" />
+    </Key>
+    <Property Name="IdDept" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdManager" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Departeme__IdMan__5165187F" FromRole="Departement" ToRole="Employees" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__IdDep__44FF419A" FromRole="Departement" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateEmbauche" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Telephone" Type="String" MaxLength="14" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Adresse" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdDept" Type="Int32" Nullable="false" />
+    <Property Name="IdManager" Type="Int32" />
+    <NavigationProperty Name="Contrats" Relationship="Self.FK__Contrat__IdEmplo__5070F446" FromRole="Employees" ToRole="Contrat" />
+    <NavigationProperty Name="Departements" Relationship="Self.FK__Departeme__IdMan__5165187F" FromRole="Employees" ToRole="Departement" />
+    <NavigationProperty Name="Departement" Relationship="Self.FK__Employees__IdDep__44FF419A" FromRole="Employees" ToRole="Departement" />
+    <NavigationProperty Name="Employees1" Relationship="Self.FK__Employees__IdMan__45F365D3" FromRole="Employees" ToRole="Employees1" />
+    <NavigationProperty Name="Employee1" Relationship="Self.FK__Employees__IdMan__45F365D3" FromRole="Employees1" ToRole="Employees" />
+    <NavigationProperty Name="Missions" Relationship="Self.FK__Mission__IdManag__4E88ABD4" FromRole="Employees" ToRole="Mission" />
+    <NavigationProperty Name="Utilisateur" Relationship="GestPersonnelModel.FK_Utilisateur_Employees" FromRole="Employee" ToRole="Utilisateur" />
+    <Property Name="Picture" Type="Binary" MaxLength="50" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="Fonction">
+    <Key>
+      <PropertyRef Name="IdFonction" />
+    </Key>
+    <Property Name="IdFonction" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Contrats" Relationship="Self.FK__Contrat__IdFonct__49C3F6B7" FromRole="Fonction" ToRole="Contrat" />
+  </EntityType>
+  <EntityType Name="Mission">
+    <Key>
+      <PropertyRef Name="IdMission" />
+    </Key>
+    <Property Name="IdMission" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Montant" Type="Single" Nullable="false" />
+    <Property Name="DateDebut" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateFin" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Intitule" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdManager" Type="Int32" Nullable="false" />
+    <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+    <Property Name="DateDebutContrat" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Contrat" Relationship="Self.FK__Mission__4F7CD00D" FromRole="Mission" ToRole="Contrat" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Mission__IdManag__4E88ABD4" FromRole="Mission" ToRole="Employees" />
+    <NavigationProperty Name="Paiements" Relationship="Self.FK__Paiement__IdMiss__4D94879B" FromRole="Mission" ToRole="Paiement" />
+  </EntityType>
+  <EntityType Name="Paiement">
+    <Key>
+      <PropertyRef Name="IdEmployee" />
+      <PropertyRef Name="DateVersement" />
+    </Key>
+    <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+    <Property Name="DateVersement" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateDebutContrat" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IdAbsence" Type="Int32" />
+    <Property Name="IdConges" Type="Int32" />
+    <Property Name="IdMission" Type="Int32" />
+    <NavigationProperty Name="Absence" Relationship="Self.FK__Paiement__IdAbse__4BAC3F29" FromRole="Paiement" ToRole="Absence" />
+    <NavigationProperty Name="Conge" Relationship="Self.FK__Paiement__IdCong__4CA06362" FromRole="Paiement" ToRole="Conges" />
+    <NavigationProperty Name="Contrat" Relationship="Self.FK__Paiement__4AB81AF0" FromRole="Paiement" ToRole="Contrat" />
+    <NavigationProperty Name="Mission" Relationship="Self.FK__Paiement__IdMiss__4D94879B" FromRole="Paiement" ToRole="Mission" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Utilisateur">
+    <Key>
+      <PropertyRef Name="IdUtilisateur" />
+    </Key>
+    <Property Name="NomUtilisateur" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MotDePasse" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdUtilisateur" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="GestPersonnelModel.FK_Utilisateur_Employees" FromRole="Utilisateur" ToRole="Employee" />
+  </EntityType>
+  <Association Name="FK__Paiement__IdAbse__4BAC3F29">
+    <End Role="Absence" Type="Self.Absence" Multiplicity="0..1" />
+    <End Role="Paiement" Type="Self.Paiement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Absence">
+        <PropertyRef Name="IdAbsence" />
+      </Principal>
+      <Dependent Role="Paiement">
+        <PropertyRef Name="IdAbsence" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Paiement__IdCong__4CA06362">
+    <End Role="Conges" Type="Self.Conge" Multiplicity="0..1" />
+    <End Role="Paiement" Type="Self.Paiement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conges">
+        <PropertyRef Name="IdConges" />
+      </Principal>
+      <Dependent Role="Paiement">
+        <PropertyRef Name="IdConges" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Contrat__IdEmplo__5070F446">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Contrat" Type="Self.Contrat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contrat">
+        <PropertyRef Name="IdEmployee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Contrat__IdFonct__49C3F6B7">
+    <End Role="Fonction" Type="Self.Fonction" Multiplicity="1" />
+    <End Role="Contrat" Type="Self.Contrat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fonction">
+        <PropertyRef Name="IdFonction" />
+      </Principal>
+      <Dependent Role="Contrat">
+        <PropertyRef Name="IdFonction" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mission__4F7CD00D">
+    <End Role="Contrat" Type="Self.Contrat" Multiplicity="1" />
+    <End Role="Mission" Type="Self.Mission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contrat">
+        <PropertyRef Name="IdEmployee" />
+        <PropertyRef Name="DateDebutContrat" />
+      </Principal>
+      <Dependent Role="Mission">
+        <PropertyRef Name="IdEmployee" />
+        <PropertyRef Name="DateDebutContrat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Paiement__4AB81AF0">
+    <End Role="Contrat" Type="Self.Contrat" Multiplicity="1" />
+    <End Role="Paiement" Type="Self.Paiement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contrat">
+        <PropertyRef Name="IdEmployee" />
+        <PropertyRef Name="DateDebutContrat" />
+      </Principal>
+      <Dependent Role="Paiement">
+        <PropertyRef Name="IdEmployee" />
+        <PropertyRef Name="DateDebutContrat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Departeme__IdMan__5165187F">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Departement" Type="Self.Departement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Departement">
+        <PropertyRef Name="IdManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employees__IdDep__44FF419A">
+    <End Role="Departement" Type="Self.Departement" Multiplicity="1" />
+    <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departement">
+        <PropertyRef Name="IdDept" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="IdDept" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employees__IdMan__45F365D3">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Employees1" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employees1">
+        <PropertyRef Name="IdManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mission__IdManag__4E88ABD4">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Mission" Type="Self.Mission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mission">
+        <PropertyRef Name="IdManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Paiement__IdMiss__4D94879B">
+    <End Role="Mission" Type="Self.Mission" Multiplicity="0..1" />
+    <End Role="Paiement" Type="Self.Paiement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mission">
+        <PropertyRef Name="IdMission" />
+      </Principal>
+      <Dependent Role="Paiement">
+        <PropertyRef Name="IdMission" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GestPersonnelEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Absences" EntityType="Self.Absence" />
+    <EntitySet Name="Conges" EntityType="Self.Conge" />
+    <EntitySet Name="Contrats" EntityType="Self.Contrat" />
+    <EntitySet Name="Departements" EntityType="Self.Departement" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Fonctions" EntityType="Self.Fonction" />
+    <EntitySet Name="Missions" EntityType="Self.Mission" />
+    <EntitySet Name="Paiements" EntityType="Self.Paiement" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateur" />
+    <AssociationSet Name="FK__Paiement__IdAbse__4BAC3F29" Association="Self.FK__Paiement__IdAbse__4BAC3F29">
+      <End Role="Absence" EntitySet="Absences" />
+      <End Role="Paiement" EntitySet="Paiements" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Paiement__IdCong__4CA06362" Association="Self.FK__Paiement__IdCong__4CA06362">
+      <End Role="Conges" EntitySet="Conges" />
+      <End Role="Paiement" EntitySet="Paiements" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Contrat__IdEmplo__5070F446" Association="Self.FK__Contrat__IdEmplo__5070F446">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Contrat" EntitySet="Contrats" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Contrat__IdFonct__49C3F6B7" Association="Self.FK__Contrat__IdFonct__49C3F6B7">
+      <End Role="Fonction" EntitySet="Fonctions" />
+      <End Role="Contrat" EntitySet="Contrats" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mission__4F7CD00D" Association="Self.FK__Mission__4F7CD00D">
+      <End Role="Contrat" EntitySet="Contrats" />
+      <End Role="Mission" EntitySet="Missions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Paiement__4AB81AF0" Association="Self.FK__Paiement__4AB81AF0">
+      <End Role="Contrat" EntitySet="Contrats" />
+      <End Role="Paiement" EntitySet="Paiements" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Departeme__IdMan__5165187F" Association="Self.FK__Departeme__IdMan__5165187F">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Departement" EntitySet="Departements" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employees__IdDep__44FF419A" Association="Self.FK__Employees__IdDep__44FF419A">
+      <End Role="Departement" EntitySet="Departements" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employees__IdMan__45F365D3" Association="Self.FK__Employees__IdMan__45F365D3">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Employees1" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mission__IdManag__4E88ABD4" Association="Self.FK__Mission__IdManag__4E88ABD4">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Mission" EntitySet="Missions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Paiement__IdMiss__4D94879B" Association="Self.FK__Paiement__IdMiss__4D94879B">
+      <End Role="Mission" EntitySet="Missions" />
+      <End Role="Paiement" EntitySet="Paiements" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(GestPersonnelModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(GestPersonnelModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <AssociationSet Name="FK_Utilisateur_Employees" Association="GestPersonnelModel.FK_Utilisateur_Employees">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Utilisateur" EntitySet="Utilisateurs" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <Association Name="FK_Utilisateur_Employees">
+    <End Type="GestPersonnelModel.Employee" Role="Employee" Multiplicity="1" />
+    <End Type="GestPersonnelModel.Utilisateur" Role="Utilisateur" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Utilisateur">
+        <PropertyRef Name="IdUtilisateur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

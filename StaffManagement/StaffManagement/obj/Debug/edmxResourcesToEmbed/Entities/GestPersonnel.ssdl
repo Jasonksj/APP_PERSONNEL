@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GestPersonnelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Absence">
+    <Key>
+      <PropertyRef Name="IdAbsence" />
+    </Key>
+    <Property Name="IdAbsence" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Motif" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Conges">
+    <Key>
+      <PropertyRef Name="IdConges" />
+    </Key>
+    <Property Name="IdConges" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateDebut" Type="datetime" Nullable="false" />
+    <Property Name="DateFin" Type="datetime" Nullable="false" />
+    <Property Name="Justification" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contrat">
+    <Key>
+      <PropertyRef Name="IdEmployee" />
+      <PropertyRef Name="DateDebutContrat" />
+    </Key>
+    <Property Name="IdEmployee" Type="int" Nullable="false" />
+    <Property Name="DateDebutContrat" Type="datetime" Nullable="false" />
+    <Property Name="Titre" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="NiveauHierachique" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Salaire" Type="real" Nullable="false" />
+    <Property Name="DateFin" Type="datetime" Nullable="false" />
+    <Property Name="IdFonction" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Departement">
+    <Key>
+      <PropertyRef Name="IdDept" />
+    </Key>
+    <Property Name="IdDept" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IdManager" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Picture" Type="binary" MaxLength="50" />
+    <Property Name="Adresse" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="14" Nullable="false" />
+    <Property Name="DateEmbauche" Type="datetime" Nullable="false" />
+    <Property Name="IdDept" Type="int" Nullable="false" />
+    <Property Name="IdManager" Type="int" />
+  </EntityType>
+  <EntityType Name="Fonction">
+    <Key>
+      <PropertyRef Name="IdFonction" />
+    </Key>
+    <Property Name="IdFonction" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mission">
+    <Key>
+      <PropertyRef Name="IdMission" />
+    </Key>
+    <Property Name="IdMission" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Montant" Type="real" Nullable="false" />
+    <Property Name="DateDebut" Type="datetime" Nullable="false" />
+    <Property Name="DateFin" Type="datetime" Nullable="false" />
+    <Property Name="Intitule" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IdManager" Type="int" Nullable="false" />
+    <Property Name="IdEmployee" Type="int" Nullable="false" />
+    <Property Name="DateDebutContrat" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Paiement">
+    <Key>
+      <PropertyRef Name="IdEmployee" />
+      <PropertyRef Name="DateVersement" />
+    </Key>
+    <Property Name="IdEmployee" Type="int" Nullable="false" />
+    <Property Name="DateVersement" Type="datetime" Nullable="false" />
+    <Property Name="DateDebutContrat" Type="datetime" Nullable="false" />
+    <Property Name="IdAbsence" Type="int" />
+    <Property Name="IdConges" Type="int" />
+    <Property Name="IdMission" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Utilisateur">
+    <Key>
+      <PropertyRef Name="IdUtilisateur" />
+    </Key>
+    <Property Name="IdUtilisateur" Type="int" Nullable="false" />
+    <Property Name="NomUtilisateur" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="MotDePasse" Type="nvarchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Contrat__IdEmplo__5070F446">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Contrat" Type="Self.Contrat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contrat">
+        <PropertyRef Name="IdEmployee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Contrat__IdFonct__49C3F6B7">
+    <End Role="Fonction" Type="Self.Fonction" Multiplicity="1" />
+    <End Role="Contrat" Type="Self.Contrat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fonction">
+        <PropertyRef Name="IdFonction" />
+      </Principal>
+      <Dependent Role="Contrat">
+        <PropertyRef Name="IdFonction" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Departeme__IdMan__5165187F">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Departement" Type="Self.Departement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Departement">
+        <PropertyRef Name="IdManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employees__IdDep__44FF419A">
+    <End Role="Departement" Type="Self.Departement" Multiplicity="1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departement">
+        <PropertyRef Name="IdDept" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="IdDept" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Employees__IdMan__45F365D3">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Employees1" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employees1">
+        <PropertyRef Name="IdManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mission__4F7CD00D">
+    <End Role="Contrat" Type="Self.Contrat" Multiplicity="1" />
+    <End Role="Mission" Type="Self.Mission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contrat">
+        <PropertyRef Name="IdEmployee" />
+        <PropertyRef Name="DateDebutContrat" />
+      </Principal>
+      <Dependent Role="Mission">
+        <PropertyRef Name="IdEmployee" />
+        <PropertyRef Name="DateDebutContrat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mission__IdManag__4E88ABD4">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Mission" Type="Self.Mission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mission">
+        <PropertyRef Name="IdManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Paiement__4AB81AF0">
+    <End Role="Contrat" Type="Self.Contrat" Multiplicity="1" />
+    <End Role="Paiement" Type="Self.Paiement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contrat">
+        <PropertyRef Name="IdEmployee" />
+        <PropertyRef Name="DateDebutContrat" />
+      </Principal>
+      <Dependent Role="Paiement">
+        <PropertyRef Name="IdEmployee" />
+        <PropertyRef Name="DateDebutContrat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Paiement__IdAbse__4BAC3F29">
+    <End Role="Absence" Type="Self.Absence" Multiplicity="0..1" />
+    <End Role="Paiement" Type="Self.Paiement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Absence">
+        <PropertyRef Name="IdAbsence" />
+      </Principal>
+      <Dependent Role="Paiement">
+        <PropertyRef Name="IdAbsence" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Paiement__IdCong__4CA06362">
+    <End Role="Conges" Type="Self.Conges" Multiplicity="0..1" />
+    <End Role="Paiement" Type="Self.Paiement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conges">
+        <PropertyRef Name="IdConges" />
+      </Principal>
+      <Dependent Role="Paiement">
+        <PropertyRef Name="IdConges" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Paiement__IdMiss__4D94879B">
+    <End Role="Mission" Type="Self.Mission" Multiplicity="0..1" />
+    <End Role="Paiement" Type="Self.Paiement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mission">
+        <PropertyRef Name="IdMission" />
+      </Principal>
+      <Dependent Role="Paiement">
+        <PropertyRef Name="IdMission" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Utilisateur_Employees">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Utilisateur">
+        <PropertyRef Name="IdUtilisateur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="GestPersonnelModelStoreContainer">
+    <EntitySet Name="Absence" EntityType="Self.Absence" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Conges" EntityType="Self.Conges" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contrat" EntityType="Self.Contrat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Departement" EntityType="Self.Departement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fonction" EntityType="Self.Fonction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mission" EntityType="Self.Mission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Paiement" EntityType="Self.Paiement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Contrat__IdEmplo__5070F446" Association="Self.FK__Contrat__IdEmplo__5070F446">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Contrat" EntitySet="Contrat" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Contrat__IdFonct__49C3F6B7" Association="Self.FK__Contrat__IdFonct__49C3F6B7">
+      <End Role="Fonction" EntitySet="Fonction" />
+      <End Role="Contrat" EntitySet="Contrat" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Departeme__IdMan__5165187F" Association="Self.FK__Departeme__IdMan__5165187F">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Departement" EntitySet="Departement" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employees__IdDep__44FF419A" Association="Self.FK__Employees__IdDep__44FF419A">
+      <End Role="Departement" EntitySet="Departement" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Employees__IdMan__45F365D3" Association="Self.FK__Employees__IdMan__45F365D3">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Employees1" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mission__4F7CD00D" Association="Self.FK__Mission__4F7CD00D">
+      <End Role="Contrat" EntitySet="Contrat" />
+      <End Role="Mission" EntitySet="Mission" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mission__IdManag__4E88ABD4" Association="Self.FK__Mission__IdManag__4E88ABD4">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Mission" EntitySet="Mission" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Paiement__4AB81AF0" Association="Self.FK__Paiement__4AB81AF0">
+      <End Role="Contrat" EntitySet="Contrat" />
+      <End Role="Paiement" EntitySet="Paiement" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Paiement__IdAbse__4BAC3F29" Association="Self.FK__Paiement__IdAbse__4BAC3F29">
+      <End Role="Absence" EntitySet="Absence" />
+      <End Role="Paiement" EntitySet="Paiement" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Paiement__IdCong__4CA06362" Association="Self.FK__Paiement__IdCong__4CA06362">
+      <End Role="Conges" EntitySet="Conges" />
+      <End Role="Paiement" EntitySet="Paiement" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Paiement__IdMiss__4D94879B" Association="Self.FK__Paiement__IdMiss__4D94879B">
+      <End Role="Mission" EntitySet="Mission" />
+      <End Role="Paiement" EntitySet="Paiement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Utilisateur_Employees" Association="Self.FK_Utilisateur_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Utilisateur" EntitySet="Utilisateur" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
